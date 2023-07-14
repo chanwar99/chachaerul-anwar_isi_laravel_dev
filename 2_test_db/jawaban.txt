@@ -13,10 +13,7 @@ LEFT JOIN user ON merchants.user_id = user.id
 LEFT JOIN transaksi ON merchants.id = transaksi.merchant_id
 GROUP BY merchants.name;
 
-4. Buatlah query list transaksi dengan menampilkan, nama merchant, tanggal transaksi,
-nominal transaksi, status (labeling);
-
-5. SELECT merchants.name AS merchant_name, transaksi.tanggal_transaksi, transaksi.nominal,
+4. SELECT merchants.name AS merchant_name, transaksi.tanggal_transaksi, transaksi.nominal,
   CASE
     WHEN transaksi.status = 'S' THEN 'Success'
     WHEN transaksi.status = 'F' THEN 'Failed'
