@@ -1,0 +1,27 @@
+1. SELECT merchants.name AS merchant_name, transaksi.status, SUM(transaksi.nominal) AS total_transaksi
+FROM transaksi
+JOIN merchants ON merchants.id = transaksi.merchant_id
+GROUP BY merchants.name, transaksi.status;
+
+2. SELECT transaksi.status, AVG(transaksi.nominal) AS average_nominal
+FROM transaksi
+GROUP BY transaksi.status;
+
+3. SELECT merchants.name AS merchant_name, COUNT(DISTINCT user.id) AS total_user, COUNT(transaksi.id) AS total_transaksi
+FROM merchants
+LEFT JOIN user ON merchants.user_id = user.id
+LEFT JOIN transaksi ON merchants.id = transaksi.merchant_id
+GROUP BY merchants.name;
+
+4. Buatlah query list transaksi dengan menampilkan, nama merchant, tanggal transaksi,
+nominal transaksi, status (labeling);
+
+5. SELECT merchants.name AS merchant_name, transaksi.tanggal_transaksi, transaksi.nominal,
+  CASE
+    WHEN transaksi.status = 'S' THEN 'Success'
+    WHEN transaksi.status = 'F' THEN 'Failed'
+    WHEN transaksi.status = 'P' THEN 'Pending'
+    WHEN transaksi.status = 'R' THEN 'Rejected'
+  END AS status_label
+FROM transaksi
+JOIN merchants ON merchants.id = transaksi.merchant_id;
